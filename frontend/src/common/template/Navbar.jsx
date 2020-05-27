@@ -15,10 +15,15 @@ export default props => {
   const linksRender = () => (
     <>
       <li className={`nav-item ${checkActive('/')}`} >
-        <a className="nav-link" href="#/"> Home <span className="sr-only">(current)</span></a>
+        <a className="nav-link" href="#/"> 
+          <i className="fa fa-home"></i>
+          Home <span className="sr-only">(current)</span>
+        </a>
       </li>
       <li className="nav-item" className={`nav-item ${checkActive('/books')}`}  >
-        <a className="nav-link" href="#/books"> Livros</a>
+        <a className="nav-link" href="#/books"> 
+          <i className="fa fa-book"></i>
+          Livros</a>
       </li>
     </>)
   

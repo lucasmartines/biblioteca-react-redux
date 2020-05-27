@@ -1,12 +1,13 @@
 import React from 'react';
 import Container from '../../common/containers/Containter.jsx'
 import Col from '../../common/containers/Col.jsx'
+import Header from './../../common/containers/Header.jsx'
 
 export default props => (
   <Container className="py-5">
-    <h2> Home </h2>
+    <Header title="Mega Biblioteca" lead={`Aplicativo para organização de livros`} icon="book" hr /> 
     <Container row>
-      <h3> Aplicação de Biblioteca </h3>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur hic, quos illum molestiae suscipit magnam error sequi incidunt sint! Unde facere perspiciatis velit laudantium voluptate.
     </Container>
   </Container>
 )

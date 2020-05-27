@@ -31,6 +31,10 @@ module.exports = {
           'css-loader', // dá o suporte para o javascript usar css nas tags jsx eu acho
           'sass-loader'// importa .scss e sass precisa instalar o node-sass
         ]
+      },
+      {
+        test : /\.(woff|woff2|eot|ttf|otf|svg|png|gif|jpg)$/,
+        use:['file-loader']
       }
     ] 
   }
