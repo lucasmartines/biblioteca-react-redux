@@ -3,11 +3,13 @@ import React from 'react';
 
 class SignPage extends React.Component
 {
-  render(){
+  
+  render()
+  {
     return(
-      <form >
-        Teste
-      </form >
+      <div>
+        <h2>Signin</h2>
+      </div>
     )
   }
 }

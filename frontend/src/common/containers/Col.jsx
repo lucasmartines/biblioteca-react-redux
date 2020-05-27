@@ -1,7 +1,7 @@
 import React from 'react';
 
 const generateBootstrapClasses = ( classes ) => {
-  let array = classes.split(' ')
+  let array = classes.split(' ') || []
 
   let _classes = 
              array[0] ? `col-${array[0]}` : 'col-12'
