@@ -12,6 +12,7 @@ import SignPage from '../components/login-logout/SignPage.jsx'
 export default props => (
   <Router>
     <Navbar />
+    
     <Switch>
       <PrivateRoute 
           path="/books"

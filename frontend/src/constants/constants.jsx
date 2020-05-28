@@ -1,0 +1,3 @@
+export default  {
+  FETCHED_BOOKS_SERVER:'FETCHED_BOOKS_SERVER'
+}
