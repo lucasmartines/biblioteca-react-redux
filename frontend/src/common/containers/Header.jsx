@@ -16,16 +16,17 @@ export default p => (
         </p>
       </If>
     </Col>
-    <Col style={{flexGrow:'18'}}>
+    <Col  >
       <h1>{p.title}</h1>
       <p className="lead">{p.subtitle || p.lead}</p>
-      
     </Col>
-    <Col style={{flexGrow:'4'}}>
-      <div className="justify-content-end d-flex">
-        {p.action}
-      </div>
-    </Col>
+    <If show={p.action} >
+      <Col>
+        <div className="justify-content-end d-flex">
+          {p.action}
+        </div>
+      </Col>
+    </If>
     {p.hr ? (<hr/>) : false }
   </Row>
 )

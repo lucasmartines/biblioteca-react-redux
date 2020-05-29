@@ -2,7 +2,9 @@ import React from 'react';
 import img from './../../assets/images/book.png'
 import IconButton from '../../common/input/IconButton.jsx'
 
-const SingleData = ( props ) => (
+const SingleData = ( props ) => {
+  
+  return(
   <tr>
     <td className="book-img-container"> <img src={img} alt=""/>  </td>
     <td> {props.name} </td>
@@ -10,22 +12,22 @@ const SingleData = ( props ) => (
     <td> {props.publishDate} </td>
     <td className="book-actions">
        <IconButton 
-          onClick={()=>alert('del')}
+          onClick={props.del}
           color="danger"
           icon="trash" 
           rounded/>
         <IconButton 
-          onClick={()=>alert('edit')}
+          onClick={props.edit}
           color="success"
           icon="pencil" 
           rounded/>
         <IconButton 
-          onClick={()=>alert('download')}
+          onClick={props.download}
           color="info"
           icon="download" 
           rounded/>
     </td>
   </tr>
-)
+)}
 
 export default SingleData

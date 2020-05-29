@@ -7,4 +7,12 @@
 .book table td{
   vertical-align: middle;
 }
- 
+
+.add_book_button
+{
+    width: 160px;
+}
+
+.book-actions{
+  padding: 0!important;
+}

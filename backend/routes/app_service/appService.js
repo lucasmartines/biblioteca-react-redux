@@ -1,10 +1,10 @@
 const path = require('path')
-const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const { base , _cors } = require('../../env.js')
 const express = require('express')
 
+/** carrega o aplicativo front end */
 module.exports = ( app   ) => {
   
 
