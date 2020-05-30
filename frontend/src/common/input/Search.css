@@ -1,0 +1,10 @@
+.search-container{
+  margin-bottom: 10px;
+}
+.search-button{
+  width:160px;
+  text-align: left!important;
+}
+.search-button i{
+  padding-right: 5px;
+}

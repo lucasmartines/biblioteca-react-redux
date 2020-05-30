@@ -8,17 +8,30 @@ const Book = require('./../../models/book')
 // ?sort ?search_field ?author
 bookService.get('/search', async( req,res ) => {
 
-  let { q , field , sort_field , search_field , sort } = req.query
+  let { q , search , search_field, sort_field , sort   , page , qtd } = req.query
 
-  sort_field   = sort_field    ? sort_field   : 'name' 
-  search_field = search_field ? search_field : 'name' 
-  sort         = +sort || 1
+  search = search || req.body.search
+
+  q = q || search || ''
+ 
+  sort         = parseInt( +sort )  || 1 // if is -1 in reverse if is 1 is normal
+  page         = parseInt( +page )  || 0 // is the page of pagination
+  qtd          = page ? 5 : qtd // if user pass page them the default limit of books per request is 5
+  qtd          = qtd ? parseInt( +qtd  ) : 5 // is the qtd of the books that clients whant
+
+
+  let regex = new RegExp( q ,'i')
+  
+  let search_object = search_field ? { search_field : regex } : { 'name' : regex }
+  let sort_obj      = sort_field   ? { [sort_field]     : +sort  } : {}
 
   Book
-    .find()
-    .where({ [search_field] : new RegExp( q || ' ' ,'i') })
-    .sort ({ [sort_field]   : +sort  })
-    .exec( ( e , books ) => {
+    .find ()
+    .where( search_object )
+    .sort ( sort_obj )
+    .skip (  page * qtd )
+    .limit( page * qtd + qtd )
+    .exec ( ( e , books ) => {
         if ( e ){
           res.status(500).send("Erro não foi possivel buscar nenhum dado!")
         }  
@@ -31,7 +44,7 @@ bookService.get('/search', async( req,res ) => {
 bookService.get( '/' , async (req,res)=>{
   
   try{
-    let books = await Book.find();
+    let books = await Book.find()
     res.json([...books])
   }
   catch
@@ -40,7 +53,6 @@ bookService.get( '/' , async (req,res)=>{
       message:"Erro Não foi possivel inserir/atualizar o Livro" 
     })
   }
-  
 })
 
 bookService.get('/count' , async (req,res)=> {

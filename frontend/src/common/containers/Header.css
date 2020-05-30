@@ -1,0 +1,18 @@
+.header-icon{
+  font-size: 68px!important;
+  padding-top: 10px!important;
+}
+
+@media( max-width: 640px){
+  .header-title{
+    font-size: 20px;
+  }
+  .header.lead{
+    font-size: 22;
+  }
+  .header-icon{
+    font-size: 38px!important;
+    padding-top: 0px!important;
+  }
+}
+

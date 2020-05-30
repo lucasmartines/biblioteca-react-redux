@@ -12,6 +12,7 @@ const app = express()
 app.use(cors)
 app.use(error)
 app.use(bodyParser.json())
+express.urlencoded({ extended: false })
 
 
 // root app for route '/'

@@ -15,13 +15,19 @@ import BookForm from './BookForm.jsx'
 
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchBooks , changeBookPanel ,updateBook , deleteBook } from './bookActions.js'
+import { 
+  fetchBooks , changeBookPanel ,updateBook , 
+  deleteBook , setSearch , fetchCount 
+} from './bookActions.js'
+
+import Search from './../../common/input/Search.jsx'
 
 class Book extends React.Component 
 { 
 
   componentDidMount(){
     this.props.fetchBooks()
+    this.props.fetchCount()
   }
 
   submitForm(book){
@@ -31,9 +37,11 @@ class Book extends React.Component
   }
   render(){
 
-    let {books,changeBookPanel,deleteBook} = this.props || [] // books inside book reducer 
+    let {books,changeBookPanel,deleteBook , setSearch , fetchBooks } = this.props || [] // books inside book reducer 
     
     let {bookPanel} = this.props.book /** witch painel i an fron book */
+    
+    let bookReducer = this.props.book
 
     return( 
       <Container className="book py-5">
@@ -57,6 +65,12 @@ class Book extends React.Component
 
         {/* just show book's data */}
         <If show={bookPanel === 'show_books'}>
+
+          <Search 
+            handleSubmit={  () => fetchBooks() } query={ bookReducer.search }
+            setQuery    ={ (q) => setSearch(q)} clean={ () => {setSearch('') ; fetchBooks()} }
+          />
+
           <BookTable >
             { books && books.map( book => (
               <SingleBookTableRow 
@@ -89,7 +103,8 @@ const mapStateToProps = ( state ) => ({
   books: state.book.books
 })
 const mapDispatchToProps = dispatch => bindActionCreators( { 
-  fetchBooks, changeBookPanel, updateBook, deleteBook
+  fetchBooks , changeBookPanel, updateBook,
+  deleteBook , setSearch , fetchCount
 } , dispatch )
 
 export default connect( mapStateToProps , mapDispatchToProps )( Book ) 

@@ -2,12 +2,33 @@ import axios from 'axios'
 import env from '../../../.env.js'
 import c from '../../constants/constants.jsx'
 import {initialize} from 'redux-form'
+import store from '../../../src/main/redux_config.jsx'
 
-export const fetchBooks = () => {
+
+export function fetchCount(){
+  let base_url = env.SERVER_HOST_FULL+'/api/books';
+  
+  const count = axios.get(`${base_url}/count`)
+
+  return{
+    type: c.FETCHED_BOOK_COUNT,
+    payload: count
+  }
+}
+export function fetchBooks (clean = false) {
 
   try{
 
-    const data = axios.get(env.SERVER_HOST_FULL+'/api/books')
+    console.log('books search',store.getState().book.search)
+    const { search , page } = store.getState().book
+    
+    if( clean ) search = ''
+    // let search_string = search ? 'q='+ search : ''
+
+    let base_url = env.SERVER_HOST_FULL+'/api/books/search';
+    
+    const data = axios.get(`${base_url}?search=${search}&page=${page}`)
+
     return {
       type: c.FETCHED_BOOKS_SERVER,
       payload: data 
@@ -15,6 +36,13 @@ export const fetchBooks = () => {
   }
   catch( e ){
     console.log( e )
+  }
+}
+export function setSearch ( search ) {
+
+  return{
+    type:c.SET_SEARCH,
+    payload:search
   }
 }
 export const deleteBook = ( id ) => dispatch => {
