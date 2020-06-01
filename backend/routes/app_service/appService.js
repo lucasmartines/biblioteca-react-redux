@@ -1,22 +1,22 @@
 const path = require('path')
 const bodyParser = require('body-parser')
 
-const { base , _cors } = require('../../env.js')
+const { base, _cors } = require('../../env.js')
 const express = require('express')
 
 /** carrega o aplicativo front end */
-module.exports = ( app   ) => {
-  
+module.exports = (app) => {
 
-  app.use(bodyParser.urlencoded({ extended: true }))
-  app.use(bodyParser.json())
 
-  // static files from front end
-  app.use( express.static( path.resolve( base , './../frontend/public' )  )  )
-  
-  /** send static file front end */
-  app.get( '/' , (req,res) => {
-    res.sendFile( path.resolve( base , './../frontend/public/index.html' ) )
-  })
+    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(bodyParser.json())
+
+    // static files from front end
+    app.use(express.static(path.resolve(base, './../frontend/public')))
+
+    /** send static file front end */
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(base, './../frontend/public/index.html'))
+    })
 
 }
