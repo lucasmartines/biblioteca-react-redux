@@ -12,8 +12,11 @@ module.exports = (app) => {
     app.use(bodyParser.json())
 
     // static files from front end
-    app.use(express.static(__dirname + './../../../frontend/public'))
-        //    app.use(express.static(base + './../frontend/public'))
+
+    app.use(express.static(path.resolve(__dirname, '../../public')))
+    console.log(path.resolve(__dirname, '../../public'))
+
+    //    app.use(express.static(base + './../frontend/public'))
 
     /** send static file front end */
     app.get('/', (req, res) => {
